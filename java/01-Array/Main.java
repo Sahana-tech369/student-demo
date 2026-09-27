@@ -3,20 +3,18 @@ public class Main {
 
         int[] arr = {5, 3, 8, 1, 2};
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 1; i < arr.length; i++) {
 
-            int minIndex = i;
+            int key = arr[i];
+            int j = i - 1;
 
-            for (int j = i + 1; j < arr.length; j++) {
+            while (j >= 0 && arr[j] > key) {
 
-                if (arr[j] < arr[minIndex]) {
-                    minIndex = j;
-                }
+                arr[j + 1] = arr[j];
+                j--;
             }
 
-            int temp = arr[i];
-            arr[i] = arr[minIndex];
-            arr[minIndex] = temp;
+            arr[j + 1] = key;
         }
 
         for (int i = 0; i < arr.length; i++) {
