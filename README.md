@@ -1,4 +1,2 @@
 # student-demo
-this is my first repository,
-<br>
-Author - sahana
+Java & DSA placement preparation — problem solving, algorithms, and coding practice.
