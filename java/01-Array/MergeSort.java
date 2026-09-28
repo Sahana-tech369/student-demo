@@ -1,6 +1,6 @@
 public class MergeSort {
 
-    static void mergeSort(int[] arr, int left, int right) {
+    // Merge Sort uses divide and conquer to sort the array.`r`n    static void mergeSort(int[] arr, int left, int right) {
 
         if (left < right) {
 
