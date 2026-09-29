@@ -1,60 +1,57 @@
 public class MergeSort {
 
-    // Merge Sort uses divide and conquer to sort the array.`r`n    static void mergeSort(int[] arr, int left, int right) {
+    static void mergeSort(int[] arr) {
 
-        if (left < right) {
-
-            int mid = (left + right) / 2;
-
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
-
-            merge(arr, left, mid, right);
+        if (arr.length <= 1) {
+            return;
         }
+
+        int mid = arr.length / 2;
+
+        int[] left = new int[mid];
+        int[] right = new int[arr.length - mid];
+
+        for (int i = 0; i < mid; i++) {
+            left[i] = arr[i];
+        }
+
+        for (int i = mid; i < arr.length; i++) {
+            right[i - mid] = arr[i];
+        }
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, left, right);
     }
 
-    static void merge(int[] arr, int left, int mid, int right) {
-
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        int[] a = new int[n1];
-        int[] b = new int[n2];
-
-        for (int i = 0; i < n1; i++) {
-            a[i] = arr[left + i];
-        }
-
-        for (int j = 0; j < n2; j++) {
-            b[j] = arr[mid + 1 + j];
-        }
+    static void merge(int[] arr, int[] left, int[] right) {
 
         int i = 0;
         int j = 0;
-        int k = left;
+        int k = 0;
 
-        while (i < n1 && j < n2) {
+        while (i < left.length && j < right.length) {
 
-            if (a[i] <= b[j]) {
-                arr[k] = a[i];
+            if (left[i] <= right[j]) {
+                arr[k] = left[i];
                 i++;
-            }
-            else {
-                arr[k] = b[j];
+            } else {
+                arr[k] = right[j];
                 j++;
             }
 
             k++;
         }
 
-        while (i < n1) {
-            arr[k] = a[i];
+        while (i < left.length) {
+            arr[k] = left[i];
             i++;
             k++;
         }
 
-        while (j < n2) {
-            arr[k] = b[j];
+        while (j < right.length) {
+            arr[k] = right[j];
             j++;
             k++;
         }
@@ -64,7 +61,7 @@ public class MergeSort {
 
         int[] arr = {8, 3, 5, 1, 4, 2, 7};
 
-        mergeSort(arr, 0, arr.length - 1);
+        mergeSort(arr);
 
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
