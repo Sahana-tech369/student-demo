@@ -2,29 +2,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] arr = {1, 2, 3, 4, 6};
-
-        int target = 6;
+        int[] arr = {1, 2, 3, 4, 5};
 
         int left = 0;
         int right = arr.length - 1;
 
         while (left < right) {
 
-            int sum = arr[left] + arr[right];
+            int temp = arr[left];
 
-            if (sum == target) {
-                System.out.println(arr[left] + " + " + arr[right] + " = " + target);
-                break;
-            }
+            arr[left] = arr[right];
 
-            else if (sum < target) {
-                left++;
-            }
+            arr[right] = temp;
 
-            else {
-                right--;
-            }
+            left++;
+            right--;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
         }
     }
 }
