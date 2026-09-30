@@ -2,30 +2,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        int[] arr = {1, 1, 2, 2, 3, 4, 4};
 
-        int left = 0;
-        int right = height.length - 1;
+        int slow = 0;
 
-        int maxWater = 0;
+        for (int fast = 1; fast < arr.length; fast++) {
 
-        while (left < right) {
+            if (arr[fast] != arr[slow]) {
 
-            int width = right - left;
+                slow++;
 
-            int minHeight = Math.min(height[left], height[right]);
-
-            int water = width * minHeight;
-
-            maxWater = Math.max(maxWater, water);
-
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
+                arr[slow] = arr[fast];
             }
         }
 
-        System.out.println("Maximum water = " + maxWater);
+        for (int i = 0; i <= slow; i++) {
+            System.out.print(arr[i] + " ");
+        }
     }
 }
