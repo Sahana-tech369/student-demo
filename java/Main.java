@@ -1,30 +1,34 @@
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        int[] arr = {1, 3, 2, 6, -1, 4, 1, 8, 2};
+        String str = "abcabcbb";
 
-        int k = 5;
+        HashSet<Character> set = new HashSet<>();
 
-        int windowSum = 0;
+        int left = 0;
+        int maxLength = 0;
 
-        // First window
-        for (int i = 0; i < k; i++) {
-            windowSum = windowSum + arr[i];
+        for (int right = 0; right < str.length(); right++) {
+
+            char ch = str.charAt(right);
+
+            while (set.contains(ch)) {
+
+                set.remove(str.charAt(left));
+
+                left++;
+            }
+
+            set.add(ch);
+
+            int length = right - left + 1;
+
+            maxLength = Math.max(maxLength, length);
         }
 
-        System.out.println((double) windowSum / k);
-
-        // Slide the window
-        for (int i = k; i < arr.length; i++) {
-
-            windowSum = windowSum + arr[i];
-
-            windowSum = windowSum - arr[i - k];
-
-            double average = (double) windowSum / k;
-
-            System.out.println(average);
-        }
+        System.out.println("Longest length = " + maxLength);
     }
 }
