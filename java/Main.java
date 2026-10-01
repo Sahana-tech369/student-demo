@@ -2,29 +2,29 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] arr = {2, 1, 5, 1, 3, 2};
+        int[] arr = {1, 3, 2, 6, -1, 4, 1, 8, 2};
 
-        int k = 3;
+        int k = 5;
 
         int windowSum = 0;
-        int maxSum = 0;
 
         // First window
         for (int i = 0; i < k; i++) {
             windowSum = windowSum + arr[i];
         }
 
-        maxSum = windowSum;
+        System.out.println((double) windowSum / k);
 
         // Slide the window
         for (int i = k; i < arr.length; i++) {
 
             windowSum = windowSum + arr[i];
+
             windowSum = windowSum - arr[i - k];
 
-            maxSum = Math.max(maxSum, windowSum);
-        }
+            double average = (double) windowSum / k;
 
-        System.out.println("Maximum sum = " + maxSum);
+            System.out.println(average);
+        }
     }
 }
