@@ -6,9 +6,9 @@ public class Main {
             return;
         }
 
-        printNumbers(n - 1);
-
         System.out.print(n + " ");
+
+        printNumbers(n - 1);
     }
 
     public static void main(String[] args) {
