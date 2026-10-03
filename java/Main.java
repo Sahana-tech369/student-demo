@@ -1,20 +1,20 @@
 public class Main {
 
-    static void printNumbers(int n) {
+    static int factorial(int n) {
 
         if (n == 0) {
-            return;
+            return 1;
         }
 
-        System.out.print(n + " ");
-
-        printNumbers(n - 1);
+        return n * factorial(n - 1);
     }
 
     public static void main(String[] args) {
 
         int n = 5;
 
-        printNumbers(n);
+        int answer = factorial(n);
+
+        System.out.println(answer);
     }
 }
