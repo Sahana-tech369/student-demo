@@ -1,20 +1,24 @@
 public class Main {
 
-    static void reverse(String str, int index) {
+    static int fibonacci(int n) {
 
-        if (index < 0) {
-            return;
+        if (n == 0) {
+            return 0;
         }
 
-        System.out.print(str.charAt(index));
+        if (n == 1) {
+            return 1;
+        }
 
-        reverse(str, index - 1);
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
     public static void main(String[] args) {
 
-        String str = "hello";
+        int n = 6;
 
-        reverse(str, str.length() - 1);
+        int answer = fibonacci(n);
+
+        System.out.println(answer);
     }
 }
