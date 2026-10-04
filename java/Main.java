@@ -1,20 +1,20 @@
 public class Main {
 
-    static int sum(int n) {
+    static void reverse(String str, int index) {
 
-        if (n == 0) {
-            return 0;
+        if (index < 0) {
+            return;
         }
 
-        return n + sum(n - 1);
+        System.out.print(str.charAt(index));
+
+        reverse(str, index - 1);
     }
 
     public static void main(String[] args) {
 
-        int n = 5;
+        String str = "hello";
 
-        int answer = sum(n);
-
-        System.out.println(answer);
+        reverse(str, str.length() - 1);
     }
 }
