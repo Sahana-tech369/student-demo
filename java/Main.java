@@ -10,17 +10,23 @@ public class Main {
         }
     }
 
-    static Node findMiddle(Node head) {
+    static Node reverse(Node head) {
 
-        Node slow = head;
-        Node fast = head;
+        Node prev = null;
+        Node current = head;
 
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        while (current != null) {
+
+            Node next = current.next;
+
+            current.next = prev;
+
+            prev = current;
+
+            current = next;
         }
 
-        return slow;
+        return prev;
     }
 
     public static void main(String[] args) {
@@ -29,10 +35,14 @@ public class Main {
         head.next = new Node(20);
         head.next.next = new Node(30);
         head.next.next.next = new Node(40);
-        head.next.next.next.next = new Node(50);
 
-        Node middle = findMiddle(head);
+        head = reverse(head);
 
-        System.out.println("Middle = " + middle.data);
+        Node current = head;
+
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
     }
 }
