@@ -10,32 +10,17 @@ public class Main {
         }
     }
 
-    static Node deleteNode(Node head, int value) {
+    static Node findMiddle(Node head) {
 
-        // If list is empty
-        if (head == null) {
-            return null;
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        // If first node needs to be deleted
-        if (head.data == value) {
-            return head.next;
-        }
-
-        Node current = head;
-
-        // Find the node before the node to delete
-        while (current.next != null &&
-               current.next.data != value) {
-            current = current.next;
-        }
-
-        // Delete the node
-        if (current.next != null) {
-            current.next = current.next.next;
-        }
-
-        return head;
+        return slow;
     }
 
     public static void main(String[] args) {
@@ -44,14 +29,10 @@ public class Main {
         head.next = new Node(20);
         head.next.next = new Node(30);
         head.next.next.next = new Node(40);
+        head.next.next.next.next = new Node(50);
 
-        head = deleteNode(head, 30);
+        Node middle = findMiddle(head);
 
-        Node current = head;
-
-        while (current != null) {
-            System.out.print(current.data + " ");
-            current = current.next;
-        }
+        System.out.println("Middle = " + middle.data);
     }
 }
