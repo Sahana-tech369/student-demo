@@ -10,21 +10,30 @@ public class Main {
         }
     }
 
-    static Node insertAtEnd(Node head, int value) {
+    static Node deleteNode(Node head, int value) {
 
-        Node newNode = new Node(value);
-
+        // If list is empty
         if (head == null) {
-            return newNode;
+            return null;
+        }
+
+        // If first node needs to be deleted
+        if (head.data == value) {
+            return head.next;
         }
 
         Node current = head;
 
-        while (current.next != null) {
+        // Find the node before the node to delete
+        while (current.next != null &&
+               current.next.data != value) {
             current = current.next;
         }
 
-        current.next = newNode;
+        // Delete the node
+        if (current.next != null) {
+            current.next = current.next.next;
+        }
 
         return head;
     }
@@ -34,8 +43,9 @@ public class Main {
         Node head = new Node(10);
         head.next = new Node(20);
         head.next.next = new Node(30);
+        head.next.next.next = new Node(40);
 
-        head = insertAtEnd(head, 40);
+        head = deleteNode(head, 30);
 
         Node current = head;
 
