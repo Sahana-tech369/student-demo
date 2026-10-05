@@ -1,24 +1,29 @@
 public class Main {
 
-    static int fibonacci(int n) {
+    static class Node {
+        int data;
+        Node next;
 
-        if (n == 0) {
-            return 0;
+        Node(int data) {
+            this.data = data;
+            this.next = null;
         }
-
-        if (n == 1) {
-            return 1;
-        }
-
-        return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
     public static void main(String[] args) {
 
-        int n = 6;
+        Node n1 = new Node(10);
+        Node n2 = new Node(20);
+        Node n3 = new Node(30);
 
-        int answer = fibonacci(n);
+        n1.next = n2;
+        n2.next = n3;
 
-        System.out.println(answer);
+        Node current = n1;
+
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
     }
 }
