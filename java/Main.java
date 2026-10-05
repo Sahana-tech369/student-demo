@@ -10,16 +10,26 @@ public class Main {
         }
     }
 
+    static Node insertAtBeginning(Node head, int value) {
+
+        Node newNode = new Node(value);
+
+        newNode.next = head;
+
+        head = newNode;
+
+        return head;
+    }
+
     public static void main(String[] args) {
 
-        Node n1 = new Node(10);
-        Node n2 = new Node(20);
-        Node n3 = new Node(30);
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
 
-        n1.next = n2;
-        n2.next = n3;
+        head = insertAtBeginning(head, 5);
 
-        Node current = n1;
+        Node current = head;
 
         while (current != null) {
             System.out.print(current.data + " ");
