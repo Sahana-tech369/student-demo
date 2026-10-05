@@ -10,23 +10,22 @@ public class Main {
         }
     }
 
-    static Node reverse(Node head) {
+    static boolean hasCycle(Node head) {
 
-        Node prev = null;
-        Node current = head;
+        Node slow = head;
+        Node fast = head;
 
-        while (current != null) {
+        while (fast != null && fast.next != null) {
 
-            Node next = current.next;
+            slow = slow.next;
+            fast = fast.next.next;
 
-            current.next = prev;
-
-            prev = current;
-
-            current = next;
+            if (slow == fast) {
+                return true;
+            }
         }
 
-        return prev;
+        return false;
     }
 
     public static void main(String[] args) {
@@ -36,13 +35,13 @@ public class Main {
         head.next.next = new Node(30);
         head.next.next.next = new Node(40);
 
-        head = reverse(head);
+        // Create a cycle:
+        head.next.next.next.next = head.next;
 
-        Node current = head;
-
-        while (current != null) {
-            System.out.print(current.data + " ");
-            current = current.next;
+        if (hasCycle(head)) {
+            System.out.println("Cycle exists");
+        } else {
+            System.out.println("No cycle");
         }
     }
 }
