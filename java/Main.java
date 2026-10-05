@@ -10,13 +10,21 @@ public class Main {
         }
     }
 
-    static Node insertAtBeginning(Node head, int value) {
+    static Node insertAtEnd(Node head, int value) {
 
         Node newNode = new Node(value);
 
-        newNode.next = head;
+        if (head == null) {
+            return newNode;
+        }
 
-        head = newNode;
+        Node current = head;
+
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        current.next = newNode;
 
         return head;
     }
@@ -27,7 +35,7 @@ public class Main {
         head.next = new Node(20);
         head.next.next = new Node(30);
 
-        head = insertAtBeginning(head, 5);
+        head = insertAtEnd(head, 40);
 
         Node current = head;
 
