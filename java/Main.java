@@ -10,52 +10,52 @@ public class Main {
         }
     }
 
-    static Node getIntersection(Node headA, Node headB) {
+    static Node merge(Node head1, Node head2) {
 
-        Node p1 = headA;
-        Node p2 = headB;
+        Node dummy = new Node(0);
+        Node current = dummy;
 
-        while (p1 != p2) {
+        while (head1 != null && head2 != null) {
 
-            if (p1 == null) {
-                p1 = headB;
+            if (head1.data <= head2.data) {
+                current.next = head1;
+                head1 = head1.next;
             } else {
-                p1 = p1.next;
+                current.next = head2;
+                head2 = head2.next;
             }
 
-            if (p2 == null) {
-                p2 = headA;
-            } else {
-                p2 = p2.next;
-            }
+            current = current.next;
         }
 
-        return p1;
+        if (head1 != null) {
+            current.next = head1;
+        }
+
+        if (head2 != null) {
+            current.next = head2;
+        }
+
+        return dummy.next;
     }
 
     public static void main(String[] args) {
 
-        // Common part
-        Node common1 = new Node(8);
-        Node common2 = new Node(10);
+        Node head1 = new Node(1);
+        head1.next = new Node(3);
+        head1.next.next = new Node(5);
 
-        common1.next = common2;
+        Node head2 = new Node(2);
+        head2.next = new Node(4);
+        head2.next.next = new Node(6);
 
-        // List A: 3 -> 7 -> 8 -> 10
-        Node headA = new Node(3);
-        headA.next = new Node(7);
-        headA.next.next = common1;
+        Node result = merge(head1, head2);
 
-        // List B: 99 -> 8 -> 10
-        Node headB = new Node(99);
-        headB.next = common1;
+        Node current = result;
 
-        Node intersection = getIntersection(headA, headB);
-
-        if (intersection != null) {
-            System.out.println("Intersection = " + intersection.data);
-        } else {
-            System.out.println("No intersection");
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
         }
     }
 }
