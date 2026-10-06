@@ -10,48 +10,42 @@ public class Main {
         }
     }
 
-    static Node merge(Node head1, Node head2) {
+    static Node removeNthNode(Node head, int n) {
 
         Node dummy = new Node(0);
-        Node current = dummy;
+        dummy.next = head;
 
-        while (head1 != null && head2 != null) {
+        Node slow = dummy;
+        Node fast = dummy;
 
-            if (head1.data <= head2.data) {
-                current.next = head1;
-                head1 = head1.next;
-            } else {
-                current.next = head2;
-                head2 = head2.next;
-            }
-
-            current = current.next;
+        // Move fast N steps
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
         }
 
-        if (head1 != null) {
-            current.next = head1;
+        // Move both pointers
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
         }
 
-        if (head2 != null) {
-            current.next = head2;
-        }
+        // Delete the node
+        slow.next = slow.next.next;
 
         return dummy.next;
     }
 
     public static void main(String[] args) {
 
-        Node head1 = new Node(1);
-        head1.next = new Node(3);
-        head1.next.next = new Node(5);
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next = new Node(5);
 
-        Node head2 = new Node(2);
-        head2.next = new Node(4);
-        head2.next.next = new Node(6);
+        head = removeNthNode(head, 2);
 
-        Node result = merge(head1, head2);
-
-        Node current = result;
+        Node current = head;
 
         while (current != null) {
             System.out.print(current.data + " ");
