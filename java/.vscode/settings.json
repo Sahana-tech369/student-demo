@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/01-Array": true,
+        "**/02-String": true,
+        "**/03-Searching": true,
+        "**/04-Sorting": true,
+        "**/05-Hashing": true,
+        "**/06-TwoPointer": true,
+        "**/07-SlidingWindow": true,
+        "**/08-Recursion": true,
+        "**/09-LinkedList": true,
+        "**/*.class": true,
+        "**/oracleJdk-27": true,
+        "**/.vscode": true,
+        "**/HelloWorld.java": true,
+        "**/Solution.java": true
+    }
+}
