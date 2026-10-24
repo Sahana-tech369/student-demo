@@ -1,2 +1,1 @@
-# Java & DSA Placement Preparation
-Java & DSA placement preparation — problem solving, algorithms, and coding practice.
+Aspiring Software Developer | Java | DSA | OOP | LeetCode | Building coding skills for placements
